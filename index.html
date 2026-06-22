@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A personal vocabulary notebook for collecting, revising, and remembering useful English words." />
+    <title>Wordroom | Personal Vocabulary</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Wordroom home">Word<span>room</span></a>
+      <nav aria-label="Main navigation">
+        <a href="#library">Library</a>
+        <a href="#review">Review</a>
+      </nav>
+      <button class="icon-button" id="theme-toggle" type="button" aria-label="Switch colour theme" title="Switch colour theme">o</button>
+    </header>
+
+    <main id="top">
+      <section class="intro">
+        <div>
+          <p class="eyebrow">PERSONAL ENGLISH NOTEBOOK</p>
+          <h1>Words worth<br /><em>keeping.</em></h1>
+          <p class="intro-copy">A focused place for the vocabulary you meet, use, and want to make your own.</p>
+        </div>
+        <div class="weekly-note" aria-label="Vocabulary collection summary">
+          <span class="note-mark">*</span>
+          <p>COLLECTION</p>
+          <strong id="word-count">0</strong>
+          <span>words saved</span>
+        </div>
+      </section>
+
+      <section class="workspace" id="library" aria-labelledby="library-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">YOUR LIBRARY</p>
+            <h2 id="library-heading">Vocabulary</h2>
+          </div>
+          <button class="button primary" id="open-add" type="button">+ Add a word</button>
+        </div>
+
+        <div class="tool-row">
+          <label class="search-field">
+            <span class="sr-only">Search vocabulary</span>
+            <input id="search" type="search" placeholder="Search word, meaning, or tag" />
+          </label>
+          <div class="filters" role="group" aria-label="Filter vocabulary">
+            <button class="filter is-active" type="button" data-filter="all">All</button>
+            <button class="filter" type="button" data-filter="new">New</button>
+            <button class="filter" type="button" data-filter="learning">Learning</button>
+            <button class="filter" type="button" data-filter="known">Known</button>
+          </div>
+        </div>
+
+        <div class="word-list" id="word-list" aria-live="polite"></div>
+        <p class="empty-state" id="empty-state" hidden>No matching words yet.</p>
+      </section>
+
+      <section class="review-section" id="review" aria-labelledby="review-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">REVIEW MODE</p>
+            <h2 id="review-heading">Give it a moment.</h2>
+          </div>
+          <span class="review-count" id="review-count">0 / 0</span>
+        </div>
+        <div class="flashcard-wrap">
+          <button class="flashcard" id="flashcard" type="button" aria-label="Reveal definition">
+            <span class="card-label" id="card-label">WORD</span>
+            <strong id="card-word">Add a word to begin</strong>
+            <span class="card-detail" id="card-detail">Your saved words will appear here for review.</span>
+            <span class="card-hint" id="card-hint">Tap to reveal</span>
+          </button>
+          <div class="review-actions">
+            <button class="button ghost" id="previous-card" type="button">Previous</button>
+            <button class="button ghost" id="next-card" type="button">Next</button>
+            <button class="button accent" id="mark-known" type="button">I know this</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <dialog id="word-dialog" aria-labelledby="dialog-title">
+      <form id="word-form" method="dialog">
+        <div class="dialog-header">
+          <div>
+            <p class="eyebrow">NEW ENTRY</p>
+            <h2 id="dialog-title">Add a word</h2>
+          </div>
+          <button class="close-button" id="close-add" type="button" aria-label="Close form">x</button>
+        </div>
+        <div class="form-grid">
+          <label>Word<input name="word" required placeholder="e.g. articulate" /></label>
+          <label>Part of speech<input name="partOfSpeech" placeholder="e.g. adjective" /></label>
+          <label class="full">Meaning<input name="meaning" required placeholder="A short, clear definition" /></label>
+          <label class="full">Example sentence<textarea name="example" rows="3" placeholder="Write a sentence you would actually use."></textarea></label>
+          <label>Tag<input name="tag" placeholder="e.g. work, IELTS" /></label>
+          <label>Status<select name="status"><option value="new">New</option><option value="learning">Learning</option><option value="known">Known</option></select></label>
+        </div>
+        <button class="button primary submit" type="submit">Save word</button>
+      </form>
+    </dialog>
+
+    <template id="word-template">
+      <article class="word-item">
+        <div class="word-main">
+          <div class="word-heading"><h3></h3><span class="part-of-speech"></span></div>
+          <p class="meaning"></p>
+          <p class="example"></p>
+        </div>
+        <div class="word-meta"><span class="tag"></span><button class="status" type="button"></button><button class="delete" type="button" aria-label="Delete word" title="Delete word">x</button></div>
+      </article>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>
