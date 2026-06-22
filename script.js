@@ -1,21 +1,21 @@
 const starterWords = [
-  { id: 1, word: "Electrical", partOfSpeech: "adjective", meaning: "Electricity / power supply system.", example: "Data centre electrical infrastructure.", tag: "data centre", status: "new" },
-  { id: 2, word: "HVAC", partOfSpeech: "noun", meaning: "Heating, ventilation and air conditioning.", example: "HVAC is primarily responsible for heat dissipation in a data centre.", tag: "data centre", status: "new" },
-  { id: 3, word: "Mission-Critical", partOfSpeech: "adjective", meaning: "Critical to operations; cannot be shut down.", example: "Mission-critical systems must remain available.", tag: "data centre", status: "new" },
-  { id: 4, word: "Data Centre", partOfSpeech: "noun", meaning: "A data centre.", example: "Australian spelling. American English: Data Center.", tag: "data centre", status: "new" },
-  { id: 5, word: "One-Line Diagram (SLD)", partOfSpeech: "noun", meaning: "Single-line diagram.", example: "One of the most important drawings in the electrical industry.", tag: "electrical", status: "new" },
-  { id: 6, word: "UPS", partOfSpeech: "noun", meaning: "Uninterruptible power supply.", example: "Provides power immediately when there is an outage.", tag: "electrical", status: "new" },
-  { id: 7, word: "Rectifier", partOfSpeech: "noun", meaning: "A device that converts alternating current to direct current.", example: "A rectifier charges the battery bank.", tag: "electrical", status: "new" },
-  { id: 8, word: "Battery Bank", partOfSpeech: "noun", meaning: "A group of batteries used as backup power.", example: "The battery bank supplies backup power for the UPS.", tag: "electrical", status: "new" },
-  { id: 9, word: "Switchgear", partOfSpeech: "noun", meaning: "Electrical control and protection equipment.", example: "The switchgear protects and controls the power system.", tag: "electrical", status: "new" },
-  { id: 10, word: "PDU", partOfSpeech: "noun", meaning: "Power distribution unit.", example: "A PDU distributes power to server racks.", tag: "data centre", status: "new" }
+  { id: 1, word: "Electrical", partOfSpeech: "adjective", meaning: "电气 / 供电系统", example: "数据中心中的电力基础设施。", tag: "data centre", status: "new" },
+  { id: 2, word: "HVAC", partOfSpeech: "noun", meaning: "暖通空调", example: "数据中心主要负责散热。", tag: "data centre", status: "new" },
+  { id: 3, word: "Mission-Critical", partOfSpeech: "adjective", meaning: "关键任务级", example: "绝不能停机。", tag: "data centre", status: "new" },
+  { id: 4, word: "Data Centre", partOfSpeech: "noun", meaning: "数据中心", example: "澳式拼写；美式为 Data Center。", tag: "data centre", status: "new" },
+  { id: 5, word: "One-Line Diagram (SLD)", partOfSpeech: "noun", meaning: "单线图", example: "电气行业最重要的图纸之一。", tag: "electrical", status: "new" },
+  { id: 6, word: "UPS", partOfSpeech: "noun", meaning: "不间断电源", example: "停电时立即供电。", tag: "electrical", status: "new" },
+  { id: 7, word: "Rectifier", partOfSpeech: "noun", meaning: "整流器", example: "将交流电转换为直流电，为电池充电。", tag: "electrical", status: "new" },
+  { id: 8, word: "Battery Bank", partOfSpeech: "noun", meaning: "电池组", example: "UPS 的后备电源。", tag: "electrical", status: "new" },
+  { id: 9, word: "Switchgear", partOfSpeech: "noun", meaning: "开关柜", example: "电力控制与保护设备。", tag: "electrical", status: "new" },
+  { id: 10, word: "PDU", partOfSpeech: "noun", meaning: "配电单元", example: "将电力分配到服务器机柜。", tag: "data centre", status: "new" }
 ];
 
-const storageKey = "wordroom-vocabulary-v2";
-const legacyStorageKey = "wordroom-vocabulary";
+const storageKey = "wordroom-vocabulary-v3";
+const legacyStorageKeys = ["wordroom-vocabulary", "wordroom-vocabulary-v2"];
 const savedWords = localStorage.getItem(storageKey);
 let words = savedWords ? JSON.parse(savedWords) : starterWords;
-if (!savedWords) localStorage.removeItem(legacyStorageKey);
+if (!savedWords) legacyStorageKeys.forEach((key) => localStorage.removeItem(key));
 let activeFilter = "all";
 let cardIndex = 0;
 let isRevealed = false;
