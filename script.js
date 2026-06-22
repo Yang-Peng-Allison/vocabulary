@@ -1,11 +1,21 @@
 const starterWords = [
-  { id: 1, word: "articulate", partOfSpeech: "adjective", meaning: "Able to express ideas clearly and effectively.", example: "She gave an articulate explanation of the proposal.", tag: "communication", status: "learning" },
-  { id: 2, word: "nuance", partOfSpeech: "noun", meaning: "A small but meaningful difference in expression or meaning.", example: "The word has a nuance that is hard to translate directly.", tag: "writing", status: "new" },
-  { id: 3, word: "substantiate", partOfSpeech: "verb", meaning: "To support a claim with evidence.", example: "Please substantiate the recommendation with data.", tag: "work", status: "known" }
+  { id: 1, word: "Electrical", partOfSpeech: "adjective", meaning: "Electricity / power supply system.", example: "Data centre electrical infrastructure.", tag: "data centre", status: "new" },
+  { id: 2, word: "HVAC", partOfSpeech: "noun", meaning: "Heating, ventilation and air conditioning.", example: "HVAC is primarily responsible for heat dissipation in a data centre.", tag: "data centre", status: "new" },
+  { id: 3, word: "Mission-Critical", partOfSpeech: "adjective", meaning: "Critical to operations; cannot be shut down.", example: "Mission-critical systems must remain available.", tag: "data centre", status: "new" },
+  { id: 4, word: "Data Centre", partOfSpeech: "noun", meaning: "A data centre.", example: "Australian spelling. American English: Data Center.", tag: "data centre", status: "new" },
+  { id: 5, word: "One-Line Diagram (SLD)", partOfSpeech: "noun", meaning: "Single-line diagram.", example: "One of the most important drawings in the electrical industry.", tag: "electrical", status: "new" },
+  { id: 6, word: "UPS", partOfSpeech: "noun", meaning: "Uninterruptible power supply.", example: "Provides power immediately when there is an outage.", tag: "electrical", status: "new" },
+  { id: 7, word: "Rectifier", partOfSpeech: "noun", meaning: "A device that converts alternating current to direct current.", example: "A rectifier charges the battery bank.", tag: "electrical", status: "new" },
+  { id: 8, word: "Battery Bank", partOfSpeech: "noun", meaning: "A group of batteries used as backup power.", example: "The battery bank supplies backup power for the UPS.", tag: "electrical", status: "new" },
+  { id: 9, word: "Switchgear", partOfSpeech: "noun", meaning: "Electrical control and protection equipment.", example: "The switchgear protects and controls the power system.", tag: "electrical", status: "new" },
+  { id: 10, word: "PDU", partOfSpeech: "noun", meaning: "Power distribution unit.", example: "A PDU distributes power to server racks.", tag: "data centre", status: "new" }
 ];
 
-const storageKey = "wordroom-vocabulary";
-let words = JSON.parse(localStorage.getItem(storageKey) || "null") || starterWords;
+const storageKey = "wordroom-vocabulary-v2";
+const legacyStorageKey = "wordroom-vocabulary";
+const savedWords = localStorage.getItem(storageKey);
+let words = savedWords ? JSON.parse(savedWords) : starterWords;
+if (!savedWords) localStorage.removeItem(legacyStorageKey);
 let activeFilter = "all";
 let cardIndex = 0;
 let isRevealed = false;
